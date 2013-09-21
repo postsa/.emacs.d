@@ -1,16 +1,14 @@
-;;add color-themes to load path
-(add-to-list 'load-path "~/.emacs.d/color-theme-6.6.0")
-;;(add-to-list 'load-path "~/.emacs.d/markdown-mode.el")
-(require 'color-theme)
-(color-theme-initialize)
-(setq color-theme-is-global t)
-(color-theme-late-night)
 
-
-;;markdown mode
-;;(autoload 'markdown-mode "markdown-mode"
-;;  "Major mode for editing Markdown files" t)
-;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(load-theme 'wombat t)
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" .
+    "http://melpa.milkbox.net/packages/") t)
+  )
+  (add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/") t)
 
 
 ;;prevent the startup screen from opening
