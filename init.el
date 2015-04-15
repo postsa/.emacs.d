@@ -12,11 +12,23 @@
 ;;keep a list of requried packages
 (defconst required_packages
   '(helm
+    darktooth-theme
     helm-gtags
     helm-swoop
-    darktooth-theme))
+    darktooth-theme
+    moe-theme
+    smartparens
+    ample-theme
+    projectile
+    helm-projectile
+    magit
+    helm-git
+    markdown-mode
+    twittering-mode
+    hlinum
+    ))
 
-;;iterate the required package list and install if needed
+;;iterate the required package list and install if not installed
 (defun install-packages()
   "Install all required packages."
   (interactive)
@@ -26,16 +38,25 @@
 	   (unless (package-installed-p package)
 	     (package-install package))))
 
+
+
 (install-packages)
 
-(load-theme 'ample-flat t)
+(require 'moe-theme)
+(load-theme 'moe-dark t)
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
+(require 'hlinum)
+(hlinum-activate)
 
+(require 'smartparens-config)
+(show-smartparens-global-mode +1)
+(smartparens-global-mode 1)
 
 (require 'setup-helm)
 (require 'setup-helm-gtags)
 
+(require 'markdown-mode)
 ;;=======================================================
 
 ;;=======================================================
@@ -80,4 +101,8 @@
 (menu-bar-mode -1)
 ;;get rid of that annoying noise
 (setq visible-bell 1)
+;;show line numbers
+(global-linum-mode t)
+;;highlight linum in all buffers
+(setq linum-highlight-in-all-buffersp t)
 ;;=======================================================
