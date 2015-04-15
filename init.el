@@ -1,49 +1,47 @@
 ;;=======================================================
-(load-theme 'wombat t)
-(add-to-list 'load-path "~/.emacs.d/")
 
 (when (>= emacs-major-version 24)
   (require 'package)
-  (package-initialize)
   ;;melpa
   (add-to-list 'package-archives 
 	       '("melpa" .
 		 "http://melpa.milkbox.net/packages/") t)
+  (package-initialize)
   )
-;;color theme it
-(add-to-list 'package-archives 
-	     '("marmalade" .
-	       "http://marmalade-repo.org/packages/") t)
-;;load org-mode
-(add-to-list 'package-archives 
-	     '( "org" . 
-		"http://orgmode.ord/elpa") t)
 ;;=======================================================
+;;keep a list of requried packages
+(defconst required_packages
+  '(helm
+    helm-gtags
+    helm-swoop
+    darktooth-theme))
 
-;;=======================================================
- ;;everything mardkown
-(autoload 'octave-mode "octave-mod" nil t)
-(setq auto-mode-alist
-      (cons '("\\.m$" . octave-mode) 
-	    auto-mode-alist))
-(autoload 'markdown-mode "markdown-mode.el" nil t)
-(add-to-list 'auto-mode-alist '("\\.text" . 
-				markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown" . 
-				markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md" . 
-				markdown-mode))
-;;=======================================================
+;;iterate the required package list and install if needed
+(defun install-packages()
+  "Install all required packages."
+  (interactive)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (dolist (package required_packages)
+	   (unless (package-installed-p package)
+	     (package-install package))))
 
-;;=======================================================
-;;aspell ispell stuff
-(setq defualt-ispell-program-name "aspell")
+(install-packages)
+
+(load-theme 'ample-flat t)
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+
+
+(require 'setup-helm)
+(require 'setup-helm-gtags)
+
 ;;=======================================================
 
 ;;=======================================================
 ;;switch buffer function
 (defun my-switch-to-other-buffer ()
-  "Switch to other buffer"
+  "Switch to other buffer."
   (interactive)
   (switch-to-buffer (other-buffer)))
 ;;=======================================================
@@ -51,9 +49,6 @@
 ;;=======================================================
 ;; keybinding to switch buffer
 (global-set-key (kbd "M-b") 'my-switch-to-other-buffer)
-;;org mode bindings
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
 ;;=======================================================
 
 ;;=======================================================
@@ -83,4 +78,6 @@
 (scroll-bar-mode -1)
 ;;get rid of the menu bar
 (menu-bar-mode -1)
+;;get rid of that annoying noise
+(setq visible-bell 1)
 ;;=======================================================
