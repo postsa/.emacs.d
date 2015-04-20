@@ -89,7 +89,7 @@
 (sp-local-pair 'emacs-lisp-mode "\\\\{" "}" :when '(sp-in-docstring-p))
 
 ;;Add another new line for c and c++
-(sp-with-modes '(c-mode c++-mode)
+(sp-with-modes '(c-mode c++-mode js-mode)
   (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
   (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
                                             ("* ||\n[i]" "RET"))))
