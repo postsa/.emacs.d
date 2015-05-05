@@ -1,9 +1,5 @@
 ;;This file determines how emacs indents different languages
 ;;basically we want indents of 2-spaces for each language
-
-
-
-
 ;;c and c++
 (setq-default tab-width 2)
 

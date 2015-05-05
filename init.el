@@ -1,32 +1,35 @@
 ;;=======================================================
 
 (when (>= emacs-major-version 24)
-  (require 'package)
-  ;;melpa
-  (add-to-list 'package-archives 
-	       '("melpa" .
-		 "http://melpa.milkbox.net/packages/") t)
-  (package-initialize)
-  )
+	(require 'package)
+	;;melpa
+	(add-to-list 'package-archives 
+							 '("melpa" .
+								 "http://melpa.milkbox.net/packages/") t)
+	(package-initialize)
+	)
 ;;=======================================================
 ;;keep a list of requried packages
 (defconst required_packages
-  '(helm
-    darktooth-theme
-    helm-gtags
-    helm-swoop
-    darktooth-theme
-    moe-theme
-    smartparens
-    ample-theme
-    projectile
-    helm-projectile
-    magit
-    helm-git
-    markdown-mode
-    twittering-mode
-    hlinum
-    ))
+	'(helm
+		darktooth-theme
+		helm-gtags
+		helm-swoop
+		darktooth-theme
+		moe-theme
+		smartparens
+		ample-theme
+		projectile
+		helm-projectile
+		magit
+		helm-git
+		markdown-mode
+		hlinum
+		company
+		yasnippet
+		helm-company
+		company-jedi
+		))
 
 ;;iterate the required package list and install if not installed
 (defun install-packages()
@@ -59,12 +62,35 @@
 (require 'markdown-mode)
 
 (require 'indent-modes)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/lisp/snippets"))
+(yas-global-mode 1)
+
+(require 'helm-company)
+(eval-after-load 'company
+  '(progn
+     (define-key company-mode-map (kbd "C-:") 'helm-company)
+     (define-key company-active-map (kbd "C-:") 'helm-company)))
+
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
+
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)(require 'company-jedi)
 ;;=======================================================
 
 ;;=======================================================
 ;;switch buffer function
 (defun my-switch-to-other-buffer ()
-  "Switch to other buffer."
+	"Switch to other buffer."
   (interactive)
   (switch-to-buffer (other-buffer)))
 ;;=======================================================
@@ -107,4 +133,7 @@
 (global-linum-mode t)
 ;;highlight linum in all buffers
 (setq linum-highlight-in-all-buffersp t)
+;;rebind undo to something more intuitive
+(global-set-key (kbd "C-z") 'undo)
 ;;=======================================================
+
