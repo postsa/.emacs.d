@@ -1,3 +1,4 @@
+
 ;;=======================================================
 
 (when (>= emacs-major-version 24)
@@ -12,7 +13,7 @@
 ;;keep a list of requried packages
 (defconst required_packages
 	'(helm
-		darktooth-theme
+		gruvbox-theme
 		helm-gtags
 		helm-swoop
 		darktooth-theme
@@ -29,6 +30,8 @@
 		yasnippet
 		helm-company
 		company-jedi
+		neotree
+		exec-path-from-shell
 		))
 
 ;;iterate the required package list and install if not installed
@@ -42,12 +45,12 @@
 	     (package-install package))))
 
 
-
 (install-packages)
-
 (require 'moe-theme)
-(load-theme 'moe-dark t)
+(require 'gruvbox-theme)
+(load-theme 'ample t)
 (add-to-list 'load-path "~/.emacs.d/lisp/")
+
 
 (require 'hlinum)
 (hlinum-activate)
@@ -137,3 +140,17 @@
 (global-set-key (kbd "C-z") 'undo)
 ;;=======================================================
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+	 (quote
+		(neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
