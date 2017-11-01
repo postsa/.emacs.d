@@ -148,6 +148,8 @@
 (setq visible-bell nil)
 ;;an the annoying noise
 (setq ring-bell-function 'ignore)
+;;use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
 ;;=======================================================
 
 (custom-set-variables
