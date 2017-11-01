@@ -1,6 +1,4 @@
-
 ;;=======================================================
-
 (when (>= emacs-major-version 24)
 	(require 'package)
 	;;melpa
@@ -9,6 +7,7 @@
 								 "http://melpa.milkbox.net/packages/") t)
 	(package-initialize)
 	)
+
 ;;=======================================================
 ;;keep a list of requried packages
 (defconst required_packages
@@ -31,9 +30,12 @@
 		helm-company
 		company-jedi
 		neotree
+		magit
 		exec-path-from-shell
-		))
+		)
+)
 
+;;=======================================================
 ;;iterate the required package list and install if not installed
 (defun install-packages()
   "Install all required packages."
@@ -44,13 +46,13 @@
 	   (unless (package-installed-p package)
 	     (package-install package))))
 
-
 (install-packages)
-(require 'moe-theme)
-(require 'gruvbox-theme)
-(load-theme 'ample t)
-(add-to-list 'load-path "~/.emacs.d/lisp/")
 
+;;=======================================================
+(load-theme 'wombat t)
+
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (require 'hlinum)
 (hlinum-activate)
@@ -91,14 +93,18 @@
 ;;=======================================================
 
 ;;=======================================================
+;;Helm Projectile Settings
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+;;=======================================================
+
+;;=======================================================
 ;;switch buffer function
 (defun my-switch-to-other-buffer ()
 	"Switch to other buffer."
   (interactive)
   (switch-to-buffer (other-buffer)))
-;;=======================================================
-
-;;=======================================================
 ;; keybinding to switch buffer
 (global-set-key (kbd "M-b") 'my-switch-to-other-buffer)
 ;;=======================================================
@@ -138,6 +144,10 @@
 (setq linum-highlight-in-all-buffersp t)
 ;;rebind undo to something more intuitive
 (global-set-key (kbd "C-z") 'undo)
+;;get rid of the yellow warning triangle
+(setq visible-bell nil)
+;;an the annoying noise
+(setq ring-bell-function 'ignore)
 ;;=======================================================
 
 (custom-set-variables
@@ -145,7 +155,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
+ '(package-selected-packagesfd
 	 (quote
 		(neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
 (custom-set-faces
@@ -154,3 +164,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
