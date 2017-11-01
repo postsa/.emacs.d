@@ -1,38 +1,38 @@
 ;;=======================================================
 (when (>= emacs-major-version 24)
-	(require 'package)
-	;;melpa
-	(add-to-list 'package-archives 
-							 '("melpa" .
-								 "http://melpa.milkbox.net/packages/") t)
-	(package-initialize)
-	)
+  (require 'package)
+  ;;melpa
+  (add-to-list 'package-archives 
+               '("melpa" .
+                 "http://melpa.milkbox.net/packages/") t)
+  (package-initialize)
+  )
 
 ;;=======================================================
 ;;keep a list of requried packages
 (defconst required_packages
-	'(helm
-		gruvbox-theme
-		helm-gtags
-		helm-swoop
-		darktooth-theme
-		moe-theme
-		smartparens
-		ample-theme
-		projectile
-		helm-projectile
-		magit
-		helm-git
-		markdown-mode
-		hlinum
-		company
-		yasnippet
-		helm-company
-		company-jedi
-		neotree
-		magit
-		exec-path-from-shell
-		)
+  '(helm
+    gruvbox-theme
+    helm-gtags
+    helm-swoop
+    darktooth-theme
+    moe-theme
+    smartparens
+    ample-theme
+    projectile
+    helm-projectile
+    magit
+    helm-git
+    markdown-mode
+    hlinum
+    company
+    yasnippet
+    helm-company
+    company-jedi
+    neotree
+    magit
+    exec-path-from-shell
+    )
   )
 
 ;;=======================================================
@@ -102,7 +102,7 @@
 ;;=======================================================
 ;;switch buffer function
 (defun my-switch-to-other-buffer ()
-	"Switch to other buffer."
+  "Switch to other buffer."
   (interactive)
   (switch-to-buffer (other-buffer)))
 ;; keybinding to switch buffer
@@ -158,8 +158,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packagesfd
-	 (quote
-		(neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
+   (quote
+    (neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
