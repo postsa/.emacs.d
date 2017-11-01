@@ -49,7 +49,10 @@
 (install-packages)
 
 ;;=======================================================
+(require 'gruvbox-theme)
+(require 'moe-theme)
 (load-theme 'wombat t)
+
 
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -120,6 +123,8 @@
 (mouse-wheel-mode t)
 ;;stop making backup files
 (setq make-backup-files nil)
+;;stop making autosave files
+(setq auto-save-default nil);
 ;;enable line numbering
 (line-number-mode 1)
 ;;disable cursor blinking
