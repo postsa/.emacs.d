@@ -33,7 +33,7 @@
 		magit
 		exec-path-from-shell
 		)
-)
+  )
 
 ;;=======================================================
 ;;iterate the required package list and install if not installed
@@ -43,8 +43,8 @@
   (unless package-archive-contents
     (package-refresh-contents))
   (dolist (package required_packages)
-	   (unless (package-installed-p package)
-	     (package-install package))))
+    (unless (package-installed-p package)
+      (package-install package))))
 
 (install-packages)
 
