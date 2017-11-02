@@ -49,9 +49,8 @@
 (install-packages)
 
 ;;=======================================================
-(require 'gruvbox-theme)
 (require 'moe-theme)
-(load-theme 'wombat t)
+(load-theme 'moe-dark t)
 
 
 
