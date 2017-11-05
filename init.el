@@ -49,8 +49,8 @@
 (install-packages)
 
 ;;=======================================================
-(require 'moe-theme)
-(load-theme 'moe-dark t)
+(require 'gruvbox-theme)
+(load-theme 'gruvbox-light-medium t)
 
 
 
@@ -108,7 +108,7 @@
   (interactive)
   (switch-to-buffer (other-buffer)))
 ;; keybinding to switch buffer
-(global-set-key (kbd "M-b") 'my-switch-to-other-buffer)
+(global-set-key (kbd "M-t") 'my-switch-to-other-buffer)
 ;;=======================================================
 
 ;;=======================================================
@@ -161,6 +161,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (cider twittering-mode smartparens neotree moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company gruvbox-theme git-rebase-mode git-commit-mode exec-path-from-shell elpy darktooth-theme company-jedi ample-theme)))
  '(package-selected-packagesfd
    (quote
     (neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
