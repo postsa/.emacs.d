@@ -22,7 +22,6 @@
     ample-theme
     projectile
     helm-projectile
-    magit
     helm-git
     markdown-mode
     hlinum
@@ -33,6 +32,7 @@
     neotree
     magit
     exec-path-from-shell
+		company-go
     )
   )
 
@@ -50,7 +50,7 @@
 (install-packages)
 
 ;;=======================================================
-<<<<<<< HEAD
+
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
                           "[ \t\n]*$"
@@ -61,10 +61,10 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (when window-system (set-exec-path-from-shell-PATH))
-=======
+
 (require 'gruvbox-theme)
 (load-theme 'gruvbox-light-medium t)
->>>>>>> cac06c6ba01891a96991c7015f42beae0919fadb
+
 
 ;;=======================================================
 ;;GO
@@ -74,9 +74,6 @@
 (add-to-list 'exec-path "/Users/tleyden/Development/gocode/bin")
 ;;(add-hook 'before-save-hook 'gofmt-before-save)
 ;;=======================================================
-
-(require 'moe-theme)
-(load-theme 'moe-dark t)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
@@ -189,35 +186,11 @@
 ;;highlight linum in all buffers
 (setq linum-highlight-in-all-buffersp t)
 ;;rebind undo to something more intuitive
-(global-set-key (kbd "C-z") 'undo)
+
 ;;get rid of the yellow warning triangle
 (setq visible-bell nil)
 ;;an the annoying noise
 (setq ring-bell-function 'ignore)
 ;;use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
-
-;;=======================================================
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-<<<<<<< HEAD
-    (company-go django-mode go-mode virtualenv twittering-mode smartparens neotree moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company gruvbox-theme exec-path-from-shell elpy darktooth-theme company-jedi ample-theme)))
-=======
-    (cider twittering-mode smartparens neotree moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company gruvbox-theme git-rebase-mode git-commit-mode exec-path-from-shell elpy darktooth-theme company-jedi ample-theme)))
->>>>>>> cac06c6ba01891a96991c7015f42beae0919fadb
- '(package-selected-packagesfd
-   (quote
-    (neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 
