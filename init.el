@@ -50,6 +50,7 @@
 (install-packages)
 
 ;;=======================================================
+<<<<<<< HEAD
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
                           "[ \t\n]*$"
@@ -60,6 +61,10 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (when window-system (set-exec-path-from-shell-PATH))
+=======
+(require 'gruvbox-theme)
+(load-theme 'gruvbox-light-medium t)
+>>>>>>> cac06c6ba01891a96991c7015f42beae0919fadb
 
 ;;=======================================================
 ;;GO
@@ -145,7 +150,7 @@
   (interactive)
   (switch-to-buffer (other-buffer)))
 ;; keybinding to switch buffer
-(global-set-key (kbd "M-b") 'my-switch-to-other-buffer)
+(global-set-key (kbd "M-t") 'my-switch-to-other-buffer)
 ;;=======================================================
 
 ;;=======================================================
@@ -200,7 +205,11 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
+<<<<<<< HEAD
     (company-go django-mode go-mode virtualenv twittering-mode smartparens neotree moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company gruvbox-theme exec-path-from-shell elpy darktooth-theme company-jedi ample-theme)))
+=======
+    (cider twittering-mode smartparens neotree moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company gruvbox-theme git-rebase-mode git-commit-mode exec-path-from-shell elpy darktooth-theme company-jedi ample-theme)))
+>>>>>>> cac06c6ba01891a96991c7015f42beae0919fadb
  '(package-selected-packagesfd
    (quote
     (neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
