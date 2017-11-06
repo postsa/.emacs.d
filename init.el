@@ -4,7 +4,8 @@
   ;;melpa
   (add-to-list 'package-archives 
                '("melpa" .
-                 "http://melpa.milkbox.net/packages/") t)
+                 "http://melpa.milkbox.net/packages/")
+               t)
   (package-initialize)
   )
 
@@ -49,11 +50,28 @@
 (install-packages)
 
 ;;=======================================================
-(require 'gruvbox-theme)
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (replace-regexp-in-string
+                          "[ \t\n]*$"
+                          ""
+                          (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq eshell-path-env path-from-shell) ; for eshell users
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(when window-system (set-exec-path-from-shell-PATH))
+
+;;=======================================================
+;;GO
+(setenv "GOPATH" "/Users/spost/Source/go")
+
+;;CALL gofmt on save
+(add-to-list 'exec-path "/Users/tleyden/Development/gocode/bin")
+;;(add-hook 'before-save-hook 'gofmt-before-save)
+;;=======================================================
+
 (require 'moe-theme)
-(load-theme 'wombat t)
-
-
+(load-theme 'moe-dark t)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
@@ -77,7 +95,11 @@
 (setq yas-snippet-dirs '("~/.emacs.d/lisp/snippets"))
 (yas-global-mode 1)
 
+
+
 (require 'helm-company)
+(require 'company-go)
+
 (eval-after-load 'company
   '(progn
      (define-key company-mode-map (kbd "C-:") 'helm-company)
@@ -93,6 +115,20 @@
   (add-to-list 'company-backends 'company-jedi))
 
 (add-hook 'python-mode-hook 'my/python-mode-hook)(require 'company-jedi)
+(add-hook 'go-mode-hook (lambda ()
+                          ;;use goimports instead of go-fmt
+                          (setq gofmt-command "goimports")
+                          ;;call gofmt on save
+                          (add-hook 'before-save-hook 'gofmt-before-save)
+                          ;;Customize compile command to run go build
+                          (if (not (string-match "go" compile-command))
+                              (set (make-local-variable 'compile-command)
+                                   "go build -v && go test -v && go vet"))
+                          ;;Godef jump key binding
+                          (local-set-key (kbd "M-.") 'godef-jump)
+                          (local-set-key (kbd "M-*") 'pop-tag-mark)                        
+                          (set (make-local-variable 'company-backends) '(company-go))
+                          (company-mode)))
 ;;=======================================================
 
 ;;=======================================================
@@ -155,13 +191,16 @@
 (setq ring-bell-function 'ignore)
 ;;use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
-;;=======================================================
 
+;;=======================================================
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (company-go django-mode go-mode virtualenv twittering-mode smartparens neotree moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company gruvbox-theme exec-path-from-shell elpy darktooth-theme company-jedi ample-theme)))
  '(package-selected-packagesfd
    (quote
     (neotree exec-path-from-shell virtualenv gruvbox-theme twittering-mode smartparens moe-theme markdown-mode magit hlinum helm-swoop helm-projectile helm-gtags helm-git helm-company elpy darktooth-theme company-jedi ample-theme))))
@@ -171,4 +210,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
 
