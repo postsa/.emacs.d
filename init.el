@@ -33,6 +33,7 @@
     magit
     exec-path-from-shell
 		company-go
+    dumb-jump
     )
   )
 
@@ -66,6 +67,7 @@
 (load-theme 'gruvbox-light-medium t)
 
 
+(dumb-jump-mode)
 ;;=======================================================
 ;;GO
 (setenv "GOPATH" "/Users/spost/Source/go")
@@ -151,6 +153,16 @@
 ;;=======================================================
 
 ;;=======================================================
+(global-unset-key (kbd "C-m"))
+;;Dumb jump bindings
+(global-set-key (kbd "C-m p") 'dumb-jump-back)
+(global-set-key (kbd "C-m q") 'dumb-jump-quick-look)
+(global-set-key (kbd "C-m g") 'dumb-jump-go)
+(global-set-key (kbd "C-m o") 'dumb-jump-go-other-window)
+
+;;=======================================================
+
+;;=======================================================
 ;;catch org invisible edits
 (setq org-catch-invisible-edits 1)
 ;;prevent the startup screen from opening
@@ -201,7 +213,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-go exec-path-from-shell magit neotree company-jedi helm-company yasnippet company hlinum markdown-mode helm-git helm-projectile projectile ample-theme smartparens moe-theme darktooth-theme helm-swoop helm-gtags gruvbox-theme helm))))
+    (helm-ag dumb-jump company-go exec-path-from-shell magit neotree company-jedi helm-company yasnippet company hlinum markdown-mode helm-git helm-projectile projectile ample-theme smartparens moe-theme darktooth-theme helm-swoop helm-gtags gruvbox-theme helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
