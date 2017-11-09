@@ -185,8 +185,8 @@
 (global-linum-mode t)
 ;;highlight linum in all buffers
 (setq linum-highlight-in-all-buffersp t)
-;;rebind undo to something more intuitive
-
+;;js-indent level
+(setq js-indent-level 4)
 ;;get rid of the yellow warning triangle
 (setq visible-bell nil)
 ;;an the annoying noise
