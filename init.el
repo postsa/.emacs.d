@@ -32,7 +32,7 @@
     neotree
     magit
     exec-path-from-shell
-		company-go
+    company-go
     dumb-jump
     )
   )
